@@ -54,8 +54,18 @@ Build/
 Engine/Binaries/
 Engine/Intermediate/
 
+# ===== Unreal Engine Asset Files (Option 1: Exclude entirely) =====
+# To use Git LFS instead, comment these out and run:
+#   git lfs install
+#   git lfs track "*.uasset" "*.umap"
+Content/**/*.uasset
+Content/**/*.umap
+
 # ===== Keep These =====
-!Content/**
+!Content/**/
+!Content/**/*.cpp
+!Content/**/*.h
+!Content/**/*.ini
 !Plugins/**/*.uplugin
 !Source/**
 !*.uproject
