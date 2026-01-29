@@ -62,12 +62,9 @@ fps_survival/
 
 ## Development Guidelines
 
-See [`.copilot-context.md`](.copilot-context.md) for:
-- Code style conventions
-- Naming conventions
-- File organization rules
-- Common configuration pitfalls to avoid
-- Best practices for Unreal Engine 5.7 C++ development
+See [`.copilot-context.md`](.copilot-context.md) for detailed code guidelines, architecture documentation, and the **CODE-FIRST methodology** that guides all development.
+
+See [GIT_WORKFLOW.md](GIT_WORKFLOW.md) for **branching strategy, PR process, and release management** (Trunk-Based Development with Release Branches).
 
 ## Version Control
 
