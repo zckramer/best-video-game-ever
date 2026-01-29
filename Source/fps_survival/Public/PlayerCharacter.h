@@ -13,6 +13,7 @@ class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
 class UCharacterMovementComponent;
+class UInputConfig;
 
 /**
  * Player character for fps_survival.
@@ -46,27 +47,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	UCameraComponent* ThirdPersonCamera;
 
-	// ===== Enhanced Input System =====
+	// ===== Input Configuration =====
 
-	/** Enhanced Input System mapping context */
+	/** Input configuration asset (holds all input actions and mapping contexts) */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	UInputMappingContext* DefaultMappingContext;
-
-	/** Movement input action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	UInputAction* MoveAction;
-
-	/** Look input action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	UInputAction* LookAction;
-
-	/** Jump input action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	UInputAction* JumpAction;
-
-	/** Camera toggle input action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	UInputAction* CameraToggleAction;
+	UInputConfig* InputConfig;
 
 	// ===== Attributes =====
 

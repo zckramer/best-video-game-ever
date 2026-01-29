@@ -7,6 +7,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "InputConfig.h"
 
 APlayerCharacter::APlayerCharacter()
 {
@@ -59,7 +60,14 @@ void APlayerCharacter::BeginPlay()
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
 			PlayerController->GetLocalPlayer()->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>())
 		{
-			Subsystem->AddMappingContext(DefaultMappingContext, 0);
+			if (InputConfig && InputConfig->DefaultMappingContext)
+			{
+				Subsystem->AddMappingContext(InputConfig->DefaultMappingContext, 0);
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("InputConfig or DefaultMappingContext is not set!"));
+			}
 		}
 	}
 
@@ -81,21 +89,39 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	if (!InputConfig)
+	{
+		UE_LOG(LogTemp, Error, TEXT("InputConfig is not set on PlayerCharacter!"));
+		return;
+	}
+
 	if (UEnhancedInputComponent* EnhancedInputComponent = 
 		Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		// Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Move);
+		if (InputConfig->MoveAction)
+		{
+			EnhancedInputComponent->BindAction(InputConfig->MoveAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Move);
+		}
 
 		// Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Look);
+		if (InputConfig->LookAction)
+		{
+			EnhancedInputComponent->BindAction(InputConfig->LookAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Look);
+		}
 
 		// Jumping
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
+		if (InputConfig->JumpAction)
+		{
+			EnhancedInputComponent->BindAction(InputConfig->JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
+			EnhancedInputComponent->BindAction(InputConfig->JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
+		}
 
 		// Camera toggle (V key)
-		EnhancedInputComponent->BindAction(CameraToggleAction, ETriggerEvent::Triggered, this, &APlayerCharacter::ToggleCameraMode);
+		if (InputConfig->CameraToggleAction)
+		{
+			EnhancedInputComponent->BindAction(InputConfig->CameraToggleAction, ETriggerEvent::Triggered, this, &APlayerCharacter::ToggleCameraMode);
+		}
 	}
 }
 
