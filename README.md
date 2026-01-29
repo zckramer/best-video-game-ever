@@ -8,8 +8,9 @@ A C++ based FPS Survival game project built with Unreal Engine 5.7.
 - **Language**: C++ (C++14 compatible)
 - **Primary Platform**: Windows
 - **Game Type**: FPS Survival
+- **Development Approach**: **Code-First** (Core systems in C++, Blueprints for customization only)
 
-See [`.copilot-context.md`](.copilot-context.md) for detailed code guidelines and architecture documentation.
+See [`.copilot-context.md`](.copilot-context.md) for detailed code guidelines, architecture documentation, and the **CODE-FIRST methodology** that guides all development.
 
 ## Quick Start
 
@@ -27,14 +28,14 @@ See [`.copilot-context.md`](.copilot-context.md) for detailed code guidelines an
    ```
 
 2. **Generate Visual Studio project files**
-   - Right-click on `fps_survival.uproject` ? "Generate Visual Studio project files"
+   - Right-click on `fps_survival.uproject` → "Generate Visual Studio project files"
 
 3. **Open the solution**
    - Open `fps_survival.sln` in Visual Studio 2022
 
 4. **Build the project**
    - In Visual Studio, select `Development_Editor` configuration
-   - Build ? Build Solution (F7)
+   - Build → Build Solution (F7)
 
 5. **Open in Unreal Engine**
    - Double-click `fps_survival.uproject` to launch the editor
@@ -43,20 +44,20 @@ See [`.copilot-context.md`](.copilot-context.md) for detailed code guidelines an
 
 ```
 fps_survival/
-??? Source/
-?   ??? fps_survival/
-?   ?   ??? Public/           # Public headers (UCLASS declarations)
-?   ?   ??? Private/          # Implementation (.cpp files)
-?   ?   ??? fps_survival.Build.cs
-?   ??? fps_survival.Target.cs
-?   ??? fps_survivalEditor.Target.cs
-??? Content/                  # Game assets, maps, blueprints
-??? Plugins/                  # Project-specific plugins
-??? .copilot-context.md       # AI Assistant guidelines
-??? .gitignore
-??? .gitattributes
-??? .editorconfig             # Code style configuration
-??? fps_survival.uproject     # Project definition
+├── Source/
+│   ├── fps_survival/
+│   │   ├── Public/           # Public headers (UCLASS declarations)
+│   │   ├── Private/          # Implementation (.cpp files)
+│   │   └── fps_survival.Build.cs
+│   ├── fps_survival.Target.cs
+│   └── fps_survivalEditor.Target.cs
+├── Content/                  # Game assets, maps, blueprints
+├── Plugins/                  # Project-specific plugins
+├── .copilot-context.md       # AI Assistant guidelines
+├── .gitignore
+├── .gitattributes
+├── .editorconfig             # Code style configuration
+└── fps_survival.uproject     # Project definition
 ```
 
 ## Development Guidelines
@@ -73,19 +74,19 @@ See [`.copilot-context.md`](.copilot-context.md) for:
 This project uses Git for version control with the following conventions:
 
 ### Important Files to Commit
-- ? `Source/` directory (all C++ source code)
-- ? `Content/` directory (game assets, maps, blueprints)
-- ? `Plugins/` directory (custom plugins)
-- ? `.uproject` file
-- ? `.copilot-context.md` (development guidelines)
-- ? Configuration files (`.editorconfig`, etc.)
+- ✅ `Source/` directory (all C++ source code)
+- ✅ `Content/` directory (game assets, maps, blueprints)
+- ✅ `Plugins/` directory (custom plugins)
+- ✅ `.uproject` file
+- ✅ `.copilot-context.md` (development guidelines)
+- ✅ Configuration files (`.editorconfig`, etc.)
 
 ### Files/Folders to Ignore
-- ? `Binaries/` - Compiled executables
-- ? `Intermediate/` - Intermediate build files
-- ? `Saved/` - Runtime generated data
-- ? `.vs/` - Visual Studio cache
-- ? `*.sln.DotSettings.user` - IDE personal settings
+- ❌ `Binaries/` - Compiled executables
+- ❌ `Intermediate/` - Intermediate build files
+- ❌ `Saved/` - Runtime generated data
+- ❌ `.vs/` - Visual Studio cache
+- ❌ `*.sln.DotSettings.user` - IDE personal settings
 
 See [`.gitignore`](.gitignore) and [`.gitattributes`](.gitattributes) for complete details.
 
@@ -130,7 +131,7 @@ refactor(controller): simplify input handling
 ### Compiling C++ Code
 ```bash
 # In Visual Studio
-Build ? Build Solution (F7)
+Build → Build Solution (F7)
 
 # Or from command line
 C:\UE_5.7\Engine\Build\BatchFiles\Build.bat fps_survivalEditor Win64 Development -Project="C:\path\to\fps_survival.uproject" -WaitMutex
