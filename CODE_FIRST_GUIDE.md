@@ -250,15 +250,95 @@ void TakeDamage(float Amount) { /* C++ calculation */ }
 - PIE (Play In Editor) validation
 - Blueprint unit tests (if complex)
 
-## Migration Path
+## Prototyping Mode: "Just Get the Shit Done"
 
-If you find old Blueprint-only logic:
+Sometimes you need to **rapidly explore ideas** without worrying about perfect architecture. This is legitimate and encouraged.
 
-1. **Create a C++ class** mirroring the functionality
-2. **Port the logic** from Blueprint to C++
-3. **Create Blueprint child** extending the C++ class
-4. **Delete the Blueprint-only implementation**
-5. **Commit to Git** only the C++ changes
+### When to Prototype
+- Exploring game feel (camera height, sprint speed, damage values)
+- Testing a new mechanic concept before committing to architecture
+- Quick iteration on level design or gameplay balance
+- Validating a "what if" before investing engineering time
+- Time-sensitive features with unclear requirements
+
+### Prototyping Rules
+1. **Use Blueprints liberally** - No architectural purity required
+2. **Document it as prototype** - Add comments: `// PROTOTYPE: testing grappling feel`
+3. **Iterate in PIE** - Fast feedback loop is the goal
+4. **Plan refactoring** - When the approach is validated, plan C++ implementation
+5. **Don't commit** - Keep prototype Blueprints out of Git until production decision
+6. **Keep scope small** - Prototypes should be narrow and focused
+
+### Prototype → Production Pipeline
+
+```
+PROTOTYPE PHASE (Blueprint)
+  → Rapid iteration in editor
+  → Test game feel and mechanics
+  → Validate design decisions
+           ↓
+DECISION POINT
+  → "This mechanic is good!" = Move to C++
+  → "This doesn't work" = Delete and try different approach
+           ↓
+PRODUCTION PHASE (C++)
+  → Port validated approach to C++
+  → Optimize for performance
+  → Integrate into systems
+  → Commit to Git
+```
+
+### Example: Grappling Hook Prototype
+
+**Day 1 - Prototype (Blueprint):**
+```
+BP_GrapplingHookTest
+  → Trace from player to world
+  → Swing physics (just a linear interpolation for now)
+  → Attach to hit point
+  → Adjust swing speed in editor, test feel
+  
+// Comment: "PROTOTYPE - testing grappling feel. Swapping to C++ once mechanics locked."
+```
+
+**Day 2 - Validation:**
+- Test in game → "Feels good, but needs tighter controls"
+- Adjust Blueprint → "Better!"
+- Lock down requirements
+
+**Day 3 - Production (C++):**
+```cpp
+// APlayerCharacter.h
+UFUNCTION(BlueprintCallable, Category = "Movement")
+void InitiateGrapple(FVector TargetPoint);
+
+// APlayerCharacter.cpp
+void APlayerCharacter::InitiateGrapple(FVector TargetPoint)
+{
+    // Optimized C++ implementation
+    // Performance-critical calculations
+    // Integrated with movement system
+}
+```
+
+### Why This Matters
+
+**Prototyping in Blueprint:**
+- ✅ Fastest feedback loop
+- ✅ Easy to iterate on feel and balance
+- ✅ Designer-friendly
+- ✅ Perfect for "does this feel fun?"
+
+**Production in C++:**
+- ✅ Optimized performance
+- ✅ Version controllable
+- ✅ Testable and maintainable
+- ✅ Professional codebase
+- ✅ Easy to extend
+
+**Best of both:** Prototype fast, refactor deliberate
+
+---
 
 ## Summary
 
@@ -274,6 +354,12 @@ If you find old Blueprint-only logic:
 - Visual iteration
 - Designer-friendly parameters
 - Content-specific behavior
+
+**Prototyping** is pragmatic:
+- Rapid exploration of ideas
+- Temporary Blueprint implementations
+- Validated approaches move to C++
+- Plan refactoring from the start
 
 ---
 
