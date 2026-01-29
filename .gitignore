@@ -1,0 +1,63 @@
+# Unreal Engine 5.7 Project .gitignore
+# This file specifies files and folders to exclude from git version control for an UE5 C++ project
+
+# ===== Unreal Engine Generated Files & Folders =====
+Binaries/
+Intermediate/
+Saved/
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+Plugins/*/Saved/
+
+# ===== Visual Studio Build Artifacts =====
+*.VC.db
+*.VC.VC.opendb
+*.vcxproj.user
+*.sln.DotSettings.user
+
+# ===== Generated Code =====
+*.generated.h
+*.generated.cpp
+*.generated.cs
+
+# ===== Temporary & Lock Files =====
+*.tmp
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+Temp/
+
+# ===== IDE & Editor Files =====
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# ===== Project-Specific =====
+DerivedDataCache/
+ContentDLC/
+Build/
+
+# ===== Platform-Specific (Optional - uncomment as needed) =====
+# /Platforms/*/Build/
+# /Platforms/*/Binaries/
+
+# ===== Third Party Libraries (if not using as submodules) =====
+# ThirdParty/*/Binaries/
+# ThirdParty/*/Intermediate/
+
+# ===== Unreal Automation =====
+Engine/Binaries/
+Engine/Intermediate/
+
+# ===== Keep These =====
+!Content/**
+!Plugins/**/*.uplugin
+!Source/**
+!*.uproject
+!.editorconfig
+!.copilot-context.md

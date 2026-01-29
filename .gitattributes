@@ -1,0 +1,59 @@
+# Git Attributes for Unreal Engine 5 Project
+# Ensures proper line ending and merge handling for different file types
+
+# ===== Text Files (LF line endings) =====
+*.h text eol=lf
+*.cpp text eol=lf
+*.c text eol=lf
+*.cs text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.ini text eol=lf
+*.uplugin text eol=lf
+*.uproject text eol=lf
+*.Build.cs text eol=lf
+*.Target.cs text eol=lf
+
+# ===== Binary Files =====
+*.uasset binary
+*.umap binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.psd binary
+*.tga binary
+*.hdr binary
+*.fbx binary
+*.obj binary
+*.ma binary
+*.mb binary
+*.blend binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.aiff binary
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.exe binary
+*.dll binary
+*.dylib binary
+*.so binary
+*.a binary
+*.lib binary
+
+# ===== Unreal Engine Specific =====
+*.dll diff=binary
+*.exe diff=binary
+*.lib diff=binary
+*.a diff=binary
+
+# ===== Merge Handling =====
+*.uasset merge=union
+*.umap merge=union
+*.uplugin merge=union
+*.uproject merge=union
